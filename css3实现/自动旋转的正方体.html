@@ -23,6 +23,7 @@
         border: 1px solid orange;
         background: red;
         transform-style: preserve-3d;
+        animation: spin 10s infinite linear;
       }
 
       .cube div {
@@ -41,17 +42,53 @@
 
       .face1 {
         /* 或 transform: translate3d(0, 0, 50px); */
-        transform: translateZ(50px) scale3d();
+        transform: translateZ(50px);
+      }
+
+      .face2 {
+        transform: translateZ(-50px) rotateY(180deg);
+      }
+
+      .face3 {
+        transform: rotate3d(0, 1, 0, -90deg) translateZ(50px);
+      }
+
+      .face4 {
+        transform: rotateY(90deg) translateZ(50px);
+      }
+
+      .face5,
+      .face6 {
+        background-image: url(./imgs/juejin_white.png);
+        background-size: cover;
+      }
+
+      .face5 {
+        transform: rotateX(90deg) translateZ(50px);
+      }
+
+      .face6 {
+        transform: rotateX(-90deg) translateZ(50px);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotateX(-26deg) rotateY(28deg);
+        }
+        70%,
+        100% {
+          transform: rotateX(-26deg) rotateY(-332deg);
+        }
       }
     </style>
   </head>
   <body>
     <div class="wrap">
       <div class="cube">
-        <div class="face1">掘</div>
-        <div class="face2"></div>
-        <div class="face3"></div>
-        <div class="face4"></div>
+        <div class="face1">稀</div>
+        <div class="face2">掘</div>
+        <div class="face3">金</div>
+        <div class="face4">土</div>
         <div class="face5"></div>
         <div class="face6"></div>
       </div>
