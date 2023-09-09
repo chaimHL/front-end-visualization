@@ -23,7 +23,7 @@
         /* border: 1px solid orange;
         background: red; */
         transform-style: preserve-3d;
-        animation: spin 10s infinite linear;
+        animation: spin 10s infinite cubic-bezier(0.6, -0.28, 0.74, 0.05);
       }
 
       .cube div {
@@ -61,6 +61,7 @@
       .face6 {
         background-image: url(./imgs/juejin_white.png);
         background-size: cover;
+        background-position: center;
       }
 
       .face5 {
