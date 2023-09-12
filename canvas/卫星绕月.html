@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>中秋游戏</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="300"
+      height="300"
+      style="border: 1px solid #dddddd"
+    ></canvas>
+
+    <script>
+      window.onload = function () {
+        const canvas = document.getElementById('canvas')
+        const ctx = canvas.getContext('2d')
+
+        // 月球图片
+        const moon = new Image()
+        moon.src = '../imgs/moon.png'
+
+        // 卫星图片
+        const satellite = new Image()
+        satellite.src = '../imgs/satellite.png'
+
+        requestAnimationFrame(draw)
+
+        function draw() {
+          ctx.save()
+          // 移动坐标系原点至画布中心
+          ctx.translate(150, 150)
+          // 绘制月球
+          ctx.drawImage(moon, -40, -40, 80, 80)
+
+          ctx.save()
+          ctx.translate(90, 0)
+          ctx.drawImage(satellite, -10, -10, 20, 20)
+          ctx.restore()
+
+          ctx.restore()
+        }
+      }
+    </script>
+  </body>
+</html>
