@@ -1,49 +1,130 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>中秋游戏</title>
+    <title>卫星绕月</title>
     <style>
       body {
         margin: 0;
       }
+      #canvas {
+        border: 1px solid #dddddd;
+        background-color: darkslateblue;
+      }
     </style>
   </head>
   <body>
-    <canvas
-      id="canvas"
-      width="300"
-      height="300"
-      style="border: 1px solid #dddddd"
-    ></canvas>
+    <canvas id="canvas" width="600" height="600"></canvas>
 
     <script>
       window.onload = function () {
         const canvas = document.getElementById('canvas')
         const ctx = canvas.getContext('2d')
 
-        // 月球图片
-        const moon = new Image()
-        moon.src = '../imgs/moon.png'
-
-        // 卫星图片
-        const satellite = new Image()
-        satellite.src = '../imgs/satellite.png'
+        // 掘金logo
+        const juejin = new Image()
+        juejin.src = '../imgs/juejin.png'
 
         requestAnimationFrame(draw)
 
         function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height) // clear canvas
+
+          // 签名
+          drawSignature()
+
           ctx.save()
           // 移动坐标系原点至画布中心
-          ctx.translate(150, 150)
-          // 绘制月球
-          ctx.drawImage(moon, -40, -40, 80, 80)
+          ctx.translate(300, 300)
 
+          // 月球
+          drawMoon()
+
+          const time = new Date()
+          ctx.rotate(
+            ((2 * Math.PI) / 60) * time.getSeconds() +
+              ((2 * Math.PI) / 60000) * time.getMilliseconds()
+          )
+
+          // 卫星
+          drawSatellite()
+
+          ctx.restore()
+
+          requestAnimationFrame(draw)
+        }
+
+        // 绘制月球
+        function drawMoon() {
+          ctx.beginPath()
+          ctx.arc(0, 0, 80, 0, Math.PI * 2)
+          ctx.fillStyle = '#FEF1BC'
+          ctx.fill()
+
+          // 阴影
+          drawShadow(80, '#F9E8A5')
+
+          // 陨石坑
+          drawMeteoriteCrater(-40, -30, 10)
+          drawMeteoriteCrater(40, -30, 20)
+          drawMeteoriteCrater(40, 40, 8)
+        }
+
+        // 绘制陨石坑
+        function drawMeteoriteCrater(x, y, r) {
           ctx.save()
-          ctx.translate(90, 0)
-          ctx.drawImage(satellite, -10, -10, 20, 20)
+          ctx.translate(x, y)
+          ctx.beginPath()
+          ctx.arc(0, 0, r, 0, Math.PI * 2)
+          ctx.fillStyle = '#F8E497'
+          ctx.fill()
+          // 阴影
+          drawShadow(r, '#E6CE6F')
           ctx.restore()
+        }
+
+        // 绘制阴影
+        function drawShadow(r, c) {
+          ctx.save()
+          ctx.rotate(-(Math.PI / 180) * 15)
+          ctx.beginPath()
+          ctx.arc(0, 0, r, 0, Math.PI / 2)
+          ctx.fillStyle = c
+          ctx.fill()
+          ctx.restore()
+        }
+
+        // 绘制卫星
+        function drawSatellite() {
+          ctx.save()
+          ctx.translate(140, 0)
+          ctx.scale(0.6, 0.6)
+          ctx.rotate((Math.PI / 180) * 270)
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(12, 14)
+          ctx.lineTo(-12, 14)
+          ctx.fillStyle = '#D8E0E5'
+          ctx.fill()
+
+          // 翅膀连接线
+          ctx.fillRect(-17, 6, 34, 2)
+
+          // 翅膀
+          ctx.fillRect(17, 1, 20, 12)
+
+          ctx.fillRect(-37, 1, 20, 12)
+
+          // 掘金 logo   257 * 200
+          ctx.drawImage(juejin, -6.425, 3, 12.85, 10)
 
           ctx.restore()
+        }
+
+        // 绘制签名
+        function drawSignature() {
+          ctx.font = '16px san-serif'
+          ctx.fillStyle = 'rgba(255,255,255,0.6)'
+          ctx.fillText('by: 亦黑迷失', 480, 580)
         }
       }
     </script>
