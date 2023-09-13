@@ -32,6 +32,14 @@
           // 签名
           drawSignature()
 
+          // 星星
+          drawStar(100, 40, 1)
+          drawStar(200, 60, 0.8)
+          drawStar(400, 120, 0.6)
+          drawStar(550, 500, 0.6)
+          drawStar(60, 480, 0.5)
+          drawStar(80, 520, 0.3)
+
           ctx.save()
           // 移动坐标系原点至画布中心
           ctx.translate(300, 300)
@@ -124,7 +132,15 @@
         function drawSignature() {
           ctx.font = '16px san-serif'
           ctx.fillStyle = 'rgba(255,255,255,0.6)'
-          ctx.fillText('by: 亦黑迷失', 480, 580)
+          ctx.fillText('by: 亦黑迷失', 490, 580)
+        }
+
+        // 绘制星星
+        function drawStar(x, y, r) {
+          ctx.beginPath()
+          ctx.arc(x, y, r, 0, Math.PI * 2)
+          ctx.fillStyle = '#FEF1BC'
+          ctx.fill()
         }
       }
     </script>
