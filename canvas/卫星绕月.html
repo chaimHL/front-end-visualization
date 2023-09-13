@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>卫星绕月</title>
     <style>
       body {
         margin: 0;
       }
       #canvas {
-        border: 1px solid #dddddd;
         background-color: darkslateblue;
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="600" height="600"></canvas>
+    <canvas id="canvas" width="400" height="400">
+      让我看看是谁不支持 canvas
+    </canvas>
 
     <script>
       window.onload = function () {
         const canvas = document.getElementById('canvas')
         const ctx = canvas.getContext('2d')
+
+        // 获取画布的宽高
+        const width = canvas.width
+        const height = canvas.height
 
         // 掘金logo
         const juejin = new Image()
@@ -27,7 +33,7 @@
         requestAnimationFrame(draw)
 
         function draw() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height) // clear canvas
+          ctx.clearRect(0, 0, width, height) // 清除画布
 
           // 签名
           drawSignature()
@@ -35,14 +41,15 @@
           // 星星
           drawStar(100, 40, 1)
           drawStar(200, 60, 0.8)
-          drawStar(400, 120, 0.6)
-          drawStar(550, 500, 0.6)
-          drawStar(60, 480, 0.5)
-          drawStar(80, 520, 0.3)
+          drawStar(300, 120, 0.6)
+          drawStar(350, 300, 0.6)
+          drawStar(60, 380, 0.5)
+          drawStar(80, 320, 0.3)
 
+          // 保存状态
           ctx.save()
           // 移动坐标系原点至画布中心
-          ctx.translate(300, 300)
+          ctx.translate(width / 2, height / 2)
 
           // 月球
           drawMoon()
@@ -56,6 +63,7 @@
           // 卫星
           drawSatellite()
 
+          // 恢复状态
           ctx.restore()
 
           requestAnimationFrame(draw)
@@ -107,6 +115,8 @@
           ctx.translate(140, 0)
           ctx.scale(0.6, 0.6)
           ctx.rotate((Math.PI / 180) * 270)
+
+          // 绘制三角形
           ctx.beginPath()
           ctx.moveTo(0, 0)
           ctx.lineTo(12, 14)
@@ -132,7 +142,7 @@
         function drawSignature() {
           ctx.font = '16px san-serif'
           ctx.fillStyle = 'rgba(255,255,255,0.6)'
-          ctx.fillText('by: 亦黑迷失', 490, 580)
+          ctx.fillText('by: 亦黑迷失', 290, 380)
         }
 
         // 绘制星星
