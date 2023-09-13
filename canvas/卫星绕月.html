@@ -20,7 +20,12 @@
     <script>
       window.onload = function () {
         const canvas = document.getElementById('canvas')
+        // 判断是否支持 canvas
+        if (!canvas.getContext) {
+          return
+        }
         const ctx = canvas.getContext('2d')
+        console.log(ctx)
 
         // 获取画布的宽高
         const width = canvas.width
