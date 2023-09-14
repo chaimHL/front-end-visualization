@@ -59,6 +59,9 @@
           // 月球
           drawMoon()
 
+          // 卫星轨迹
+          drawTrajectory()
+
           const time = new Date()
           ctx.rotate(
             ((2 * Math.PI) / 60) * time.getSeconds() +
@@ -156,6 +159,15 @@
           ctx.arc(x, y, r, 0, Math.PI * 2)
           ctx.fillStyle = '#FEF1BC'
           ctx.fill()
+        }
+
+        // 绘制卫星轨迹
+        function drawTrajectory() {
+          ctx.beginPath()
+          ctx.arc(0, 0, 143, 0, Math.PI * 2)
+          ctx.strokeStyle = 'rgba(255,255,255,0.2)'
+          ctx.setLineDash([4, 8])
+          ctx.stroke()
         }
       }
     </script>
