@@ -103,7 +103,7 @@
           ctx.stroke()
           ctx.restore()
 
-          // 绘制刻度（竖线）
+          // 绘制刻度（标示小时的竖线）
           for (let i = 0; i < 12; i++) {
             ctx.save()
             ctx.rotate(((Math.PI * 2) / 12) * i)
@@ -111,6 +111,18 @@
             ctx.moveTo(0, -180)
             ctx.lineTo(0, -174)
             ctx.lineWidth = 6
+            ctx.stroke()
+            ctx.restore()
+          }
+
+          // 绘制刻度（标示分钟的竖线）
+          for (let i = 0; i < 60; i++) {
+            ctx.save()
+            ctx.rotate(((Math.PI * 2) / 60) * i)
+            ctx.beginPath()
+            ctx.moveTo(0, -180)
+            ctx.lineTo(0, -176)
+            ctx.lineWidth = 2
             ctx.stroke()
             ctx.restore()
           }
