@@ -113,6 +113,7 @@
           ctx.rotate(-(Math.PI / 180) * 15)
           ctx.beginPath()
           ctx.arc(0, 0, r, 0, Math.PI / 2)
+          ctx.quadraticCurveTo(r - 0.2 * r, r - 0.2 * r, r, 0)
           ctx.fillStyle = c
           ctx.fill()
           ctx.restore()
