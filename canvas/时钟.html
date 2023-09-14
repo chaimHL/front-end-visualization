@@ -103,6 +103,15 @@
           ctx.stroke()
           ctx.restore()
 
+          // 绘制中心圆环
+          ctx.beginPath()
+          ctx.arc(0, 0, 8, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.beginPath()
+          ctx.arc(0, 0, 2, 0, Math.PI * 2)
+          ctx.fillStyle = 'red'
+          ctx.fill()
+
           // 绘制刻度（标示小时的竖线）
           for (let i = 0; i < 12; i++) {
             ctx.save()
