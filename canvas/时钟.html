@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>画个钟</title>
+    <style>
+      .wrap {
+        width: 400px;
+        height: 400px;
+        border-radius: 40px;
+        background-color: slategrey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+    <script>
+      window.onload = function () {
+        const canvas = document.getElementById('canvas')
+        const ctx = canvas.getContext('2d')
+
+        requestAnimationFrame(draw)
+
+        function draw() {
+          ctx.save()
+          ctx.translate(200, 200)
+          // 背景
+          ctx.beginPath()
+          ctx.arc(0, 0, 180, 0, Math.PI * 2)
+          ctx.fillStyle = '#fff'
+          ctx.fill()
+
+          /*  
+          时刻（数字）
+          不能通过旋转坐标空间实现，因为这会导致数字是弯的
+          而是需要计算得到数字的坐标
+          假设数字围成的圆半径为 140
+          那么某一个数字的 x = r * cosα; y = r * sinα
+          使用 js 即 x = r * Math.cos(α对应的弧度); y = r * Math.sin(α对应的弧度)
+          1 刻度的 α 应该为 360° / 12 = 30°
+        */
+          ctx.font = '40px fangsong'
+          ctx.textAlign = 'center'
+          ctx.textBaseline = 'middle'
+          ctx.fillStyle = '#000'
+          const arr = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2]
+          for (let i = 0; i < arr.length; i++) {
+            ctx.fillText(
+              arr[i],
+              140 * Math.cos((30 * i * Math.PI) / 180),
+              140 * Math.sin((30 * i * Math.PI) / 180)
+            )
+          }
+
+          /* 
+            绘制时针
+            时针的位置应该是当前小时 + 分钟 + 秒钟所对应的角度
+          */
+          const time = new Date()
+          const hour = time.getHours()
+          const minute = time.getMinutes()
+          const second = time.getSeconds()
+
+          ctx.save()
+          ctx.rotate(
+            ((Math.PI * 2) / 12) * hour +
+              ((Math.PI * 2) / 12 / 60) * minute +
+              ((Math.PI * 2) / 12 / 60 / 60) * second
+          )
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -70)
+          ctx.lineWidth = 6
+          ctx.lineCap = 'round'
+          ctx.stroke()
+          ctx.restore()
+
+          // 绘制分针
+          ctx.save()
+          ctx.rotate(
+            ((Math.PI * 2) / 60) * minute + ((Math.PI * 2) / 60 / 60) * second
+          )
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -100)
+          ctx.lineWidth = 4
+          ctx.lineCap = 'round'
+          ctx.stroke()
+          ctx.restore()
+
+          // 绘制秒针
+          ctx.save()
+          ctx.rotate(((Math.PI * 2) / 60) * second)
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -120)
+          ctx.lineWidth = 2
+          ctx.lineCap = 'round'
+          ctx.strokeStyle = 'red'
+          ctx.stroke()
+          ctx.restore()
+
+          // 绘制刻度（竖线）
+          for (let i = 0; i < 12; i++) {
+            ctx.save()
+            ctx.rotate(((Math.PI * 2) / 12) * i)
+            ctx.beginPath()
+            ctx.moveTo(0, -180)
+            ctx.lineTo(0, -174)
+            ctx.lineWidth = 6
+            ctx.stroke()
+            ctx.restore()
+          }
+
+          ctx.restore()
+
+          requestAnimationFrame(draw)
+        }
+      }
+    </script>
+  </body>
+</html>
