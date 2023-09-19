@@ -25,7 +25,6 @@
           return
         }
         const ctx = canvas.getContext('2d')
-        console.log(ctx)
 
         // 获取画布的宽高
         const width = canvas.width
@@ -113,7 +112,7 @@
           ctx.rotate(-(Math.PI / 180) * 15)
           ctx.beginPath()
           ctx.arc(0, 0, r, 0, Math.PI / 2)
-          ctx.quadraticCurveTo(r - 0.2 * r, r - 0.2 * r, r, 0)
+          ctx.bezierCurveTo(0.55 * r, 0.77 * r, 0.88 * r, 0.44 * r, r, 0)
           ctx.fillStyle = c
           ctx.fill()
           ctx.restore()
@@ -139,7 +138,6 @@
 
           // 翅膀
           ctx.fillRect(17, 1, 20, 12)
-
           ctx.fillRect(-37, 1, 20, 12)
 
           // 掘金 logo   257 * 200
