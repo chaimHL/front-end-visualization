@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .box {
+        width: 300px;
+        height: 150px;
+      }
+      svg {
+        border: 1px solid red;
+      }
+      #line1 {
+        fill: none;
+        stroke: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg t="1695111731167" class="icon" width="480" height="260">
+      <!-- 竖线组 -->
+      <g stroke="red" stroke-width="6">
+        <line x1="100" y1="140" x2="100" y2="100">
+          <animate
+            attributeName="y2"
+            values="100; 130; 100"
+            dur="2s"
+            repeatCount="indefinite"
+          ></animate>
+        </line>
+        <line x1="110" y1="140" x2="110" y2="100">
+          <animate
+            attributeName="y2"
+            values="100; 130; 100"
+            dur="2s"
+            repeatCount="indefinite"
+            begin="0.2s"
+          ></animate>
+        </line>
+        <line x1="120" y1="140" x2="120" y2="100">
+          <animate
+            attributeName="y2"
+            values="100; 130; 100"
+            dur="2s"
+            repeatCount="indefinite"
+            begin="0.3s"
+          ></animate>
+        </line>
+        <line x1="130" y1="140" x2="130" y2="100">
+          <animate
+            attributeName="y2"
+            values="100; 130; 100"
+            dur="2s"
+            repeatCount="indefinite"
+            begin="0.5s"
+          ></animate>
+        </line>
+      </g>
+
+      <!-- 点点点 -->
+      <g fill="red">
+        <circle cx="200" cy="130" r="6">
+          <animate
+            attributeName="fill-opacity"
+            values="1; 0; 1"
+            dur="2s"
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
+        <circle cx="220" cy="130" r="6">
+          <animate
+            attributeName="fill-opacity"
+            values="1; 0; 1"
+            dur="2s"
+            repeatCount="indefinite"
+            begin="0.2s"
+          ></animate>
+        </circle>
+        <circle cx="240" cy="130" r="6">
+          <animate
+            attributeName="fill-opacity"
+            values="1; 0; 1"
+            dur="2s"
+            repeatCount="indefinite"
+            begin="0.4s"
+          ></animate>
+        </circle>
+      </g>
+
+      <!-- 转圈圈 -->
+      <g>
+        <circle
+          cx="320"
+          cy="130"
+          r="20"
+          fill="none"
+          stroke="red"
+          stroke-width="4"
+          stroke-dasharray="8, 10"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 320 130"
+            to="360 320 130"
+            dur="2s"
+            repeatCount="indefinite"
+          ></animateTransform>
+        </circle>
+      </g>
+    </svg>
+  </body>
+</html>
