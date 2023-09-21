@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      svg {
+        border: 1px solid #efefef;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="100%" height="600" viewBox="0 0 800 600">
+      <defs>
+        <!-- 蓝色正方形 -->
+        <rect id="blueRect" width="42" height="42" fill="#26AAD6"></rect>
+        <!-- 绿色正方形 -->
+        <rect
+          id="greenRect"
+          width="34"
+          height="34"
+          fill="none"
+          stroke-width="8"
+          stroke="#51E88D"
+        ></rect>
+
+        <!-- 用于剪切的三角形 -->
+        <!-- 左上 -->
+        <clipPath id="cut-off-left-top">
+          <polygon points="316 216, 358 216, 358 174" />
+        </clipPath>
+        <!-- 右上 -->
+        <clipPath id="cut-off-right-top">
+          <polygon points="442 216, 484 216, 442 174" />
+        </clipPath>
+        <!-- 左下 -->
+        <clipPath id="cut-off-left-bottom">
+          <polygon points="316 384, 358 384, 358 426" />
+        </clipPath>
+        <!-- 右下 -->
+        <clipPath id="cut-off-right-bottom">
+          <polygon points="442 384, 484 384, 442 426" />
+        </clipPath>
+
+        <!-- 四个角的蓝色圆 -->
+        <circle id="blueCircle" r="20" fill="#26AAD6"></circle>
+      </defs>
+
+      <!-- 中间的圆 -->
+      <!-- 紫色大半圆 -->
+      <path d="M 400 384 A 84 84 0 1 0 400 216" fill="#8052E8"></path>
+      <!-- 蓝色大半圆 -->
+      <path d="M 400 384 A 84 84 0 1 1 400 216" fill="#26AAD6"></path>
+      <!-- 紫色小半圆 -->
+      <path d="M 400 328 A 28 28 0 1 1 400 272" fill="#8052E8"></path>
+      <!-- 蓝色小半圆 -->
+      <path d="M 400 328 A 28 28 0 1 0 400 272" fill="#26AAD6"></path>
+
+      <!-- 十字 -->
+      <g stroke-width="8" stroke="#FAB748">
+        <!-- 横 -->
+        <line x1="380" y1="300" x2="420" y2="300"></line>
+        <!-- 竖 -->
+        <line x1="400" y1="280" x2="400" y2="320"></line>
+      </g>
+
+      <!-- 三角形 -->
+      <!-- 亮黄色 -->
+      <g fill="#FFED5D">
+        <!-- 左 -->
+        <path d="M 316 300 l 0 -84 l -84 84 Z"></path>
+        <!-- 右 -->
+        <path d="M 484 300 l 0 84 l 84 -84 Z"></path>
+      </g>
+      <!-- 橘色 -->
+      <g fill="#FAB748">
+        <!-- 左 -->
+        <path d="M 316 300 l 0 84 l -84 -84 Z"></path>
+        <!-- 右 -->
+        <path d="M 484 300 l 0 -84 l 84 84 Z"></path>
+      </g>
+
+      <!-- 正方形 -->
+      <!-- 左上角蓝色 x = 400  - 42; y = 300 - 84 - 42  -->
+      <use x="358" y="174" href="#blueRect"></use>
+      <!-- 右下角蓝色 x = 400; y = 300 + 84 -->
+      <use x="400" y="384" href="#blueRect"></use>
+      <!-- 右上角绿色 x = 400 + 4; y = 300 - 84 - (42 - 4) -->
+      <use x="404" y="178" href="#greenRect"></use>
+      <!-- 左下角绿色 x = 400 - 42 + 4; y = 300 + 84 + 4 -->
+      <use x="362" y="388" href="#greenRect"></use>
+
+      <!-- 左上角剪切三角 -->
+      <g clip-path="url(#cut-off-left-top)" fill="#FAB748">
+        <g transform="rotate(45, 337, 195)">
+          <rect x="316" y="162" width="50" height="6"></rect>
+          <rect x="316" y="174" width="50" height="6"></rect>
+          <rect x="316" y="186" width="50" height="6"></rect>
+          <rect x="316" y="198" width="50" height="6"></rect>
+          <rect x="316" y="210" width="50" height="6"></rect>
+          <rect x="316" y="222" width="50" height="6"></rect>
+        </g>
+      </g>
+
+      <!-- 右上角剪切三角 -->
+      <g clip-path="url(#cut-off-right-top)" fill="#26AAD6">
+        <g transform="rotate(-45, 463, 195)">
+          <rect x="436" y="162" width="50" height="6"></rect>
+          <rect x="436" y="174" width="50" height="6"></rect>
+          <rect x="436" y="186" width="50" height="6"></rect>
+          <rect x="436" y="198" width="50" height="6"></rect>
+          <rect x="436" y="210" width="50" height="6"></rect>
+          <rect x="436" y="222" width="50" height="6"></rect>
+        </g>
+      </g>
+
+      <!-- 左下角剪切三角 -->
+      <g clip-path="url(#cut-off-left-bottom)" fill="#26AAD6">
+        <g transform="rotate(-45, 337, 405)">
+          <rect x="316" y="372" width="50" height="6"></rect>
+          <rect x="316" y="384" width="50" height="6"></rect>
+          <rect x="316" y="396" width="50" height="6"></rect>
+          <rect x="316" y="408" width="50" height="6"></rect>
+          <rect x="316" y="420" width="50" height="6"></rect>
+          <rect x="316" y="432" width="50" height="6"></rect>
+        </g>
+      </g>
+
+      <!-- 右下角剪切三角 -->
+      <g clip-path="url(#cut-off-right-bottom)" fill="#FAB748">
+        <g transform="rotate(45, 463, 405)">
+          <rect x="432" y="372" width="50" height="6"></rect>
+          <rect x="432" y="384" width="50" height="6"></rect>
+          <rect x="432" y="396" width="50" height="6"></rect>
+          <rect x="432" y="408" width="50" height="6"></rect>
+          <rect x="432" y="420" width="50" height="6"></rect>
+          <rect x="432" y="432" width="50" height="6"></rect>
+        </g>
+      </g>
+
+      <!-- 四周小圆 -->
+      <!-- 左上 x = 400 - 84 - 84; y = 300 - 84 - 84 -->
+      <use x="232" y="132" href="#blueCircle"></use>
+      <!-- 左下 y = 300 + 84 + 84 -->
+      <use x="232" y="468" href="#blueCircle"></use>
+      <!-- 右上 x = 400 + 168 -->
+      <use x="568" y="132" href="#blueCircle"></use>
+      <!-- 右下 -->
+      <use x="568" y="468" href="#blueCircle"></use>
+    </svg>
+  </body>
+</html>
