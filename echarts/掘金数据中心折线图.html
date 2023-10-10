@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="height: 400px"></div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script>
+      const myChart = echarts.init(document.getElementById('main'), null, {
+        renderer: 'svg'
+      })
+
+      const option = {
+        grid: {
+          left: '5%',
+          right: '1%'
+        },
+
+        // x 轴
+        xAxis: {
+          axisLine: {
+            show: false // 隐藏轴线
+          },
+          axisTick: {
+            show: false // 隐藏分隔线
+          },
+          boundaryGap: false, // 坐标轴两边不留白
+
+          // 标签文字样式修改
+          axisLabel: {
+            color: '#9DA5AF',
+            margin: 12,
+            formatter: (value, index) => {
+              if (index === 0) return `{a|${value}}`
+              if (index === 6) return `{b|${value}}`
+              return value
+            },
+            rich: {
+              a: {
+                padding: [0, 0, 0, 40] // 左边距 40
+              },
+              b: {
+                padding: [0, 40, 0, 0] // 右边距 40
+              }
+            }
+          },
+
+          data: [
+            '23-10-03',
+            '23-10-04',
+            '23-10-05',
+            '23-10-06',
+            '23-10-07',
+            '23-10-08',
+            '23-10-09'
+          ]
+        },
+
+        // y 轴
+        yAxis: {
+          // grid 中的分隔线
+          splitLine: {
+            lineStyle: {
+              type: 'dashed',
+              color: ['#EDEEF1']
+            }
+          },
+          axisLabel: {
+            color: '#9DA5AF',
+            margin: 20
+          }
+        },
+
+        // 折线图样式修改
+        series: [
+          {
+            name: '展现数',
+            type: 'line',
+            smooth: true,
+            data: [205, 201, 283, 561, 1098, 1046, 1134],
+            itemStyle: {
+              color: '#9F54FF'
+            },
+            symbol: 'pin',
+            symbolOffset: [0, '75%'],
+            showSymbol: false,
+            areaStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(173,102,255,0.1)' // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(173,102,255,0.01)' // 100% 处的颜色
+                  }
+                ]
+              }
+            }
+          },
+          {
+            name: '阅读数',
+            type: 'line',
+            smooth: true,
+            data: [68, 71, 85, 130, 280, 271, 319],
+            itemStyle: {
+              color: '#57A0FF'
+            },
+            symbol: 'pin',
+            symbolOffset: [0, '75%'],
+            showSymbol: false,
+            areaStyle: {
+              color: {
+                type: 'linear', // 线性渐变
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(87,160,255,0.1)' // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(87,160,255,0.01)' // 100% 处的颜色
+                  }
+                ]
+              }
+            }
+          }
+        ],
+
+        // 提示框
+        tooltip: {
+          trigger: 'axis',
+          formatter: params => {
+            const title = `<div style="font-weight: bold; margin-bottom: 10px">${params[0].axisValue}</div>`
+            let content = ''
+            params.forEach(item => {
+              content += `
+              <div style="margin-bottom: 6px">
+                <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: ${item.color}"></span>
+                <span>${item.seriesName}：${item.value}</span>
+              </div>
+            `
+            })
+            return title + content
+          }
+        },
+
+        // 图例
+        legend: {
+          bottom: 0,
+          itemGap: 30,
+          itemWidth: 20,
+          icon: 'path://M431.36 652.16L261.76 482.56a48 48 0 1 0-67.84 67.904l203.584 203.648a48 48 0 0 0 71.232-3.648l381.184-381.184a48 48 0 1 0-67.904-67.84l-350.72 350.72zM128 0h768a128 128 0 0 1 128 128v768a128 128 0 0 1-128 128H128a128 128 0 0 1-128-128V128a128 128 0 0 1 128-128z'
+        }
+      }
+
+      myChart.setOption(option)
+
+      window.addEventListener('resize', () => {
+        myChart.resize()
+      })
+    </script>
+  </body>
+</html>
