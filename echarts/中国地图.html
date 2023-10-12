@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="height: 400px"></div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="../js/china_geo.js"></script>
+    <script>
+      const myChart = echarts.init(document.getElementById('main'), null, {
+        renderer: 'svg'
+      })
+
+      const option = {
+        geo: {
+          map: 'china',
+          roam: true, // 鼠标控制缩放和移动
+          itemStyle: {
+            areaColor: '#092D3D', // 暗蓝色
+            borderColor: '#337AB7' // 浅蓝色
+          },
+          // 鼠标悬浮时的高亮设置
+          emphasis: {
+            itemStyle: {
+              areaColor: '#B03A5B', // 酒红色
+              borderColor: '#fff'
+            },
+            label: {
+              fontSize: 8,
+              color: '#FAC858' // 黄色
+            }
+          },
+          selectedMode: 'multiple', // 支持多选
+          select: {
+            itemStyle: {
+              areaColor: '#B03A5B', // 酒红色
+              borderColor: '#fff'
+            },
+            label: {
+              show: false
+            }
+          }
+        }
+      }
+
+      // 注册地图
+      echarts.registerMap('china', china_geojosn)
+
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>
