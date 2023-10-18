@@ -8,6 +8,7 @@
   <body>
     <div id="main" style="height: 400px"></div>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <script>
       const myChart = echarts.init(document.getElementById('main'), null, {
         renderer: 'svg'
@@ -169,9 +170,12 @@
 
       myChart.setOption(option)
 
-      window.addEventListener('resize', () => {
+      // 响应式
+      // 节流
+      const resize = _.throttle(() => {
         myChart.resize()
-      })
+      }, 1000)
+      window.addEventListener('resize', resize)
     </script>
   </body>
 </html>

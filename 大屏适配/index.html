@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        position: relative;
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        transform-origin: left top;
+        left: 50%;
+      }
+      .box {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+      }
+
+      .box > div {
+        width: calc(100% / 3);
+        height: calc(100% / 2);
+        border: 1px solid brown;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div>11</div>
+      <div>21</div>
+      <div>31</div>
+      <div>41</div>
+      <div>51</div>
+      <div>61</div>
+    </div>
+
+    <script>
+      // 设计稿尺寸及宽高比
+      const designWidth = 1920
+      const designHeight = 1080
+      const designRatio = designWidth / designHeight // 1.77
+
+      // 当前屏幕的尺寸及宽高比
+      const deviceWidth = document.documentElement.clientWidth
+      const devicHeight = document.documentElement.clientHeight
+      const deviceRatio = deviceWidth / devicHeight
+
+      // 计算缩放比
+      let scaleRatio = 1
+      // 如果当前屏幕的宽高比大于设计稿的，则以高度比作为缩放比
+      if (deviceRatio > designRatio) {
+        scaleRatio = devicHeight / designHeight
+      } else {
+        // 否则以宽度比作为缩放比
+        scaleRatio = deviceWidth / designWidth
+      }
+
+      document.body.style = `transform: scale(${scaleRatio}) translateX(-50%)`
+    </script>
+  </body>
+</html>
