@@ -5,13 +5,23 @@
     <div id="left-top">
       <div class="title">人均消费金额排名</div>
       <div class="sub-title">Ranking of per capita consumption amount</div>
-      <BarEChart />
+      <BaseEChart :chartOption="amountRankOption" />
+    </div>
+
+    <div id="left-bottom">
+      <div class="title">购买力最强区/街道</div>
+      <div class="sub-title">
+        District/Street with the strongest purchasing power
+      </div>
+      <BaseEChart :chartOption="strongestPurchasingOption" />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import BarEChart from '@/components/BarEChart.vue'
+import BaseEChart from '@/components/BaseEChart.vue'
+import { amountRankOption } from './config/amount-rank-option'
+import { strongestPurchasingOption } from './config/strongest-purchasing-option'
 </script>
 
 <style scoped>
@@ -19,6 +29,16 @@ import BarEChart from '@/components/BarEChart.vue'
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.title {
+  font-size: 26px;
+  color: white;
+}
+
+.sub-title {
+  color: white;
+  margin-bottom: 20px;
 }
 
 #top {
@@ -34,16 +54,14 @@ import BarEChart from '@/components/BarEChart.vue'
   top: 100px;
   left: 20px;
   width: 500px;
-  height: 300px;
+  height: 320px;
 }
 
-.title {
-  font-size: 26px;
-  color: white;
-}
-
-.sub-title {
-  color: white;
-  margin-bottom: 20px;
+#left-bottom {
+  position: absolute;
+  top: 580px;
+  left: 20px;
+  width: 500px;
+  height: 320px;
 }
 </style>
