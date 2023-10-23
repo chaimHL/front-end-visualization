@@ -31,5 +31,3 @@ onUnmounted(() => {
   myChart?.dispose()
 })
 </script>
-
-<style scoped></style>

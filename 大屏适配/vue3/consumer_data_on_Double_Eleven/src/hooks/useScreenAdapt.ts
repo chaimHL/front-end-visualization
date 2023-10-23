@@ -1,4 +1,4 @@
-//屏幕适配
+// 屏幕适配
 import _ from 'lodash'
 import { onMounted, onUnmounted } from 'vue'
 
@@ -23,7 +23,7 @@ export default function useScreenAdapt(dWidth: number = 1920, dHeight: number = 
     // 设计稿尺寸及宽高比
     const designWidth = dWidth
     const designHeight = dHeight
-    const designRatio = designWidth / designHeight // 1.77
+    const designRatio = designWidth / designHeight // 1.78
 
     // 当前屏幕的尺寸及宽高比
     const deviceWidth = document.documentElement.clientWidth

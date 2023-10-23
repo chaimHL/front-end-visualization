@@ -11,23 +11,23 @@ export const amountRankOption: EChartsOption = {
   },
   xAxis: {
     axisTick: {
-      show: false
+      show: false // 隐藏 x 坐标轴刻度
     },
     data: ['思明', '湖里', '集美', '同安', '海沧', '翔安']
   },
   yAxis: {
     axisLabel: {
-      show: false
+      show: false // 隐藏 y 坐标轴刻度标签
     },
     splitLine: {
-      show: false
+      show: false // 隐藏平行于 x 轴的分隔线
     }
   },
   series: [
     {
       type: 'bar',
       data: [5, 20, 36, 10, 10, 20],
-      barWidth: 20
+      barWidth: 20 // 设置柱形的宽度
     }
   ]
 }
